@@ -1,0 +1,94 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Fraudulent Mail Detector{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" type="text/css">
+<link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.jpg')}}">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+{% endblock %}
+{% block navbar %}
+<div class="page-header">
+  <h1>FRAUDULENT MAIL PREDICTION</h1>
+</div>
+
+{% endblock %}
+{% block content%}
+<body background="{{ url_for('static', filename='images/back.jpg') }}">
+<form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-md-4">
+      <div class="login">
+		    <div class="login-screen">
+          <div class="app-title">
+				    <h3>Email Blacklist</h3>
+			   </div>
+            <div class="login-form">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="17">{{blacklist}}</textarea>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4">
+      <div class="login">
+        <div class="login-screen">
+          <div class="login-form">
+          <div class="app-title">
+		        <h3>Select File</h3>
+	       </div>
+          <div class="control-group">
+		        <input type="file" name="file" class="login-field"/>
+            </div>
+          <div class="control-group">
+		        <input type="submit" class="login-field"/>
+          </div>      
+         <div class="control-group">
+            <a href="{{ url_for('upload') }}" class="login-field">REFRESH</a>
+          </div>
+          <div class="control-group">
+                    <h3>{{ message }}</h3>
+                </div>
+
+          </div>
+        </div>
+        </div>
+
+      </div>
+
+
+
+                <div class="col-6 col-md-4" >
+                    <div class="login">
+		                    <div class="login-screen">
+                                <div class="app-title">
+				                    <h3>Email Content</h3>
+			                    </div>
+                                <div class="login-form">
+                                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="17">
+                                        {{content}}</textarea>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+
+</div>
+                        </form>
+
+
+</body>
+
+
+{% endblock %}
+
+</html>
+
+

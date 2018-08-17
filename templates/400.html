@@ -1,0 +1,15 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Fraudulent Mail Detector{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+<meta charset="utf-8">
+<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.jpg')}}">
+{% endblock %}
+{% block navbar %}
+<div class="page-header">
+  <h1 >FRAUDULENT MAIL PREDICTION</h1>
+    <h4>Bad Request 400, Please reload and Select a file</h4>
+</div>
+{% endblock %}
