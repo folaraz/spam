@@ -27,7 +27,6 @@ def predict(body):
     W3 = pos[127870:127900].reshape((n_hidden_two, n_classes))
     b3 = pos[127900:127903].reshape((n_classes,))
 
-    # Perform forward propagation
     z1 = matrix.dot(W1) + b1  # Pre-activation in Layer 1
     a1 = np.tanh(z1)  # Activation in Layer 1
     z2 = a1.dot(W2) + b2  # Pre-activation in Layer 2
