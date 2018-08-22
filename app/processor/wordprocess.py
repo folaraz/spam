@@ -1,8 +1,14 @@
-import enchant
+from nltk.corpus import words
 import re
 from collections import Counter
 from dir import get_full_path
-eng_dict = enchant.Dict('en_GB')
+
+
+def check(word):
+    if word in words.words():
+        return True
+    else:
+        return False
 
 
 def separator(chars, exclude=None):
@@ -15,7 +21,7 @@ def separator(chars, exclude=None):
     while working_chars:
         for i in range(len(working_chars), 1, -1):
             segment = working_chars[:i]
-            if eng_dict.check(segment) and segment not in exclude:
+            if check(segment) and segment not in exclude:
                 words.append(segment)
                 working_chars = working_chars[i:]
                 break
