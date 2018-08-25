@@ -1,7 +1,14 @@
 import re
 from collections import Counter
 from dir import get_full_path
-from spellchecker import SpellChecker
+from nltk.corpus import words
+
+
+def check(word):
+    if word in words.words():
+        return True
+    else:
+        return False
 
 
 def words(text): return re.findall(r'\w+', text.lower())
@@ -46,13 +53,9 @@ def edits2(word):
     return (e2 for e1 in edits1(word) for e2 in edits1(e1))
 
 
-def check(word):
-    spell = SpellChecker()
-    result = spell.unknown([word])
-    if len(result) == 0:
-        return True
-    else:
-        return False
+
+
+
 
 
 def separator(chars, exclude=None):
