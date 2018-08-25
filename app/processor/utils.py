@@ -1,6 +1,6 @@
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem import WordNetLemmatizer
-from nltk.corpus import stopwords
+from stop_words import get_stop_words
 from string import ascii_letters
 import string
 from app.processor.wordprocess import separator, correction
@@ -29,7 +29,7 @@ class Process(object):
 
     def __init__(self, body):
         self.body = body.decode("utf-8")
-        self.stopwords = set(stopwords.words('english'))
+        self.stopwords = get_stop_words('english')
         self.lemmatizer = WordNetLemmatizer()
         self.tokenizer = RegexpTokenizer(r'\w+')
         self.punctuations = string.punctuation

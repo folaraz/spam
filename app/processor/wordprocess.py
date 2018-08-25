@@ -1,36 +1,7 @@
-from nltk.corpus import words
 import re
 from collections import Counter
 from dir import get_full_path
-
-
-def check(word):
-    if word in words.words():
-        return True
-    else:
-        return False
-
-
-def separator(chars, exclude=None):
-    words = []
-    if not chars.isalpha():
-        return [chars]
-    if not exclude:
-        exclude = set()
-    working_chars = chars
-    while working_chars:
-        for i in range(len(working_chars), 1, -1):
-            segment = working_chars[:i]
-            if check(segment) and segment not in exclude:
-                words.append(segment)
-                working_chars = working_chars[i:]
-                break
-        else:
-            if words:
-                exclude.add(words[-1])
-                return separator(chars, exclude=exclude)
-            return [chars]
-    return words
+from spellchecker import SpellChecker
 
 
 def words(text): return re.findall(r'\w+', text.lower())
@@ -74,3 +45,33 @@ def edits2(word):
     """All edits that are two edits away from `word`."""
     return (e2 for e1 in edits1(word) for e2 in edits1(e1))
 
+
+def check(word):
+    spell = SpellChecker()
+    result = spell.unknown([word])
+    if len(result) == 0:
+        return True
+    else:
+        return False
+
+
+def separator(chars, exclude=None):
+    words = []
+    if not chars.isalpha():
+        return [chars]
+    if not exclude:
+        exclude = set()
+    working_chars = chars
+    while working_chars:
+        for i in range(len(working_chars), 1, -1):
+            segment = working_chars[:i]
+            if check(segment) and segment not in exclude:
+                words.append(segment)
+                working_chars = working_chars[i:]
+                break
+        else:
+            if words:
+                exclude.add(words[-1])
+                return separator(chars, exclude=exclude)
+            return [chars]
+    return words
