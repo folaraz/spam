@@ -77,4 +77,4 @@ def update_blacklist(email):
 
 if __name__ == '__main__':
     nltk.data.path.append(get_full_path('nltk_data'))
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

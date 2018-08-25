@@ -11,10 +11,10 @@ def check(word):
         return False
 
 
-def words(text): return re.findall(r'\w+', text.lower())
+def worded(text): return re.findall(r'\w+', text.lower())
 
 
-WORDS = Counter(words(open(get_full_path('data/big.txt')).read()))
+WORDS = Counter(worded(open(get_full_path('data/big.txt')).read()))
 
 
 def P(word, N=sum(WORDS.values())):
@@ -51,11 +51,6 @@ def edits1(word):
 def edits2(word):
     """All edits that are two edits away from `word`."""
     return (e2 for e1 in edits1(word) for e2 in edits1(e1))
-
-
-
-
-
 
 
 def separator(chars, exclude=None):
