@@ -18,7 +18,6 @@ def predict(body):
     n_hidden_one = 20
     n_hidden_two = 10
     n_classes = 3
-    print(matrix.shape)
     # Roll-back the weights and biases
     W1 = pos[0:127640].reshape((n_inputs, n_hidden_one))
     b1 = pos[127640:127660].reshape((n_hidden_one,))

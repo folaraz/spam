@@ -25,8 +25,7 @@ def upload():
         if file and allowed_file(file.filename):
             filename = get_file_name(file.filename)
             if black_checker(filename):
-                return render_template('base.html', blacklist=open(blacklist_dir).read(), content=file.read(),
-                                       message='This sender has been blacklisted!!')
+                return render_template('base.html', blacklist=open(blacklist_dir).read(), message='This sender has been blacklisted!!')
             else:
                 content = file.read()
                 detect = predict(content)
