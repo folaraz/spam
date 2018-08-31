@@ -7,8 +7,11 @@ from app.processor.wordprocess import separator, correction
 
 class Process(object):
 
-    def __init__(self, body):
-        self.body = body.decode("utf-8")
+    def __init__(self,body):
+        try:
+            self.body = body.decode("utf-8")
+        except Exception as e:
+            self.body = body
         self.stopwords = set(stopwords.words('english'))
         self.lemmatizer = WordNetLemmatizer()
         self.tokenizer = RegexpTokenizer(r'\w+')
